@@ -3,17 +3,11 @@ services:
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
-    ports:
-      - "553:53/tcp"
-      - "553:53/udp"
-      - "667:67/udp"
-      - "8082:80/tcp"
     environment:
       TZ: 'America/Bogota'
       WEBPASSWORD: 'pihole'
     volumes:
       - './storage/pihole/etc-pihole:/etc/pihole'
       - './storage/pihole/etc-dnsmasq.d:/etc/dnsmasq.d'
-    cap_add:
-      - NET_ADMIN
+    network_mode: "host"
     restart: unless-stopped
