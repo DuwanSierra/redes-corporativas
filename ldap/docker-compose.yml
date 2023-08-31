@@ -1,21 +1,20 @@
 version: '3.7'
 services:
   freeipa:
-    image: freeipa/freeipa-server:fedora-37-4.10.1
+    image: freeipa/freeipa-server:centos-8
     restart: unless-stopped
-    hostname: udistrital.redescorporativas.local
+    hostname: udistritalredescorporativas.local
     environment:
-      IPA_SERVER_HOSTNAME: udistrital.redescorporativas.local
+      IPA_SERVER_HOSTNAME: udistritalredescorporativas.local
       TZ: "America/Bogota"
     tty: true
     stdin_open: true
-    user: root
     cap_add:
-      - ALL
+      - NET_ADMIN
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-      - /var/lib/ipa-data:/data:ro
+      - freeipavol:/data
     sysctls:
       - net.ipv6.conf.all.disable_ipv6=0
       - net.ipv6.conf.lo.disable_ipv6=0
@@ -23,16 +22,16 @@ services:
       - "seccomp:unconfined"
     command:
       - -U
-      - --domain=redescorporativas.local
-      - --realm=redescorporativas.local
+      - --domain=packops.local
+      - --realm=packops.local
       - --http-pin=YOURPASSWORD
       - --dirsrv-pin=YOURPASSWORDe
       - --ds-password=YOURPASSWORD
       - --admin-password=YOURPASSWORD
       - --no-host-dns
       - --unattended
-      - --cgroupns host
     ports:
+
       - "80:80"
       - "443:443"
       - "389:389"
@@ -46,3 +45,6 @@ services:
       - "9443:9443"
       - "9444:9444"
       - "9445:9445"
+
+volumes:
+  freeipavol:
