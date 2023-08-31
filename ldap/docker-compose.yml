@@ -30,6 +30,7 @@ services:
       - --admin-password=YOURPASSWORD
       - --no-host-dns
       - --unattended
+      - --cgroupns host
     ports:
       - "80:80"
       - "443:443"
