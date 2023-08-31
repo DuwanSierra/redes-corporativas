@@ -7,6 +7,7 @@ services:
     environment:
       TZ: 'America/Bogota'
       WEBPASSWORD: 'pihole'
+      DNSMASQ_LISTENING: 'single'
     volumes:
       - './storage/pihole/etc-pihole:/etc/pihole'
       - './etc/dnsmasq.d:/etc/dnsmasq.d'
