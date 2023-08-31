@@ -10,7 +10,7 @@ services:
     tty: true
     stdin_open: true
     cap_add:
-      - NET_ADMIN
+      - ALL
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
