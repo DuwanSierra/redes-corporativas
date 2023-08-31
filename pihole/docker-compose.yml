@@ -3,6 +3,7 @@ services:
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
+    user: root
     environment:
       TZ: 'America/Bogota'
       WEBPASSWORD: 'pihole'
