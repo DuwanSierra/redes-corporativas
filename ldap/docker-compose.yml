@@ -9,7 +9,7 @@ services:
       TZ: "America/Bogota"
     tty: true
     stdin_open: true
-    user: root
+    user: server
     cap_add:
       - ALL
     volumes:
