@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   freeipa:
-    image: freeipa/freeipa-server:centos-8
+    image: freeipa/freeipa-server:almalinux-9-4.10.1
     restart: unless-stopped
     hostname: udistrital.redescorporativas.local
     environment:
