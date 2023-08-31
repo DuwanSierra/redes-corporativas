@@ -9,13 +9,13 @@ services:
       TZ: "America/Bogota"
     tty: true
     stdin_open: true
+    user: root
     cap_add:
       - ALL
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-      - ./var/lib/ipa-data:/data:Z
-      - freeipavol:/data
+      - /var/lib/ipa-data:/data:Z
     sysctls:
       - net.ipv6.conf.all.disable_ipv6=0
       - net.ipv6.conf.lo.disable_ipv6=0
@@ -46,6 +46,3 @@ services:
       - "9443:9443"
       - "9444:9444"
       - "9445:9445"
-
-volumes:
-  freeipavol:
