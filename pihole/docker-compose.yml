@@ -9,5 +9,6 @@ services:
     volumes:
       - './storage/pihole/etc-pihole:/etc/pihole'
       - './storage/pihole/etc-dnsmasq.d:/etc/dnsmasq.d'
+      - './storage/pihole/dns:/var/lib/misc/'
     network_mode: "host"
     restart: unless-stopped
