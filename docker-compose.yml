@@ -68,23 +68,6 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo
-  pihole:
-    container_name: pihole
-    image: pihole/pihole:latest
-    ports:
-      - "53:53/tcp"
-      - "53:53/udp"
-      - "67:67/udp"
-      - "8082:80/tcp"
-    environment:
-      TZ: 'America/Bogota'
-      WEBPASSWORD: 'pihole'
-    volumes:
-      - './storage/pihole/etc-pihole:/etc/pihole'
-      - './storage/pihole/etc-dnsmasq.d:/etc/dnsmasq.d'
-    cap_add:
-      - NET_ADMIN
-    restart: unless-stopped
   mailserver:
     image: docker.io/mailserver/docker-mailserver:latest
     domainname: example.com
