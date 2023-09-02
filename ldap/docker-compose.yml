@@ -2,7 +2,7 @@ version: '3.7'
 services:
   freeipa:
     image: freeipa/freeipa-server:centos-7
-    restart: always
+    restart: unless-stopped
     hostname: udistritalredescorporativas.local
     environment:
       IPA_SERVER_HOSTNAME: udistritalredescorporativas.local
