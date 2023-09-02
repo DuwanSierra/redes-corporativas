@@ -6,7 +6,7 @@ services:
     hostname: udistritalredescorporativas.local
     environment:
       IPA_SERVER_HOSTNAME: udistritalredescorporativas.local
-      TZ: "America/Bogota"
+      TZ: America/Bogota
     tty: true
     stdin_open: true
     cap_add:
