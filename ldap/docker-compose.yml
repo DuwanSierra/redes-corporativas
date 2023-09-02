@@ -13,13 +13,10 @@ services:
       - NET_ADMIN
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - freeipavol:/data
     sysctls:
       - net.ipv6.conf.all.disable_ipv6=0
       - net.ipv6.conf.lo.disable_ipv6=0
-    security_opt:
-      - "seccomp:unconfined"
     command:
       - -U
       - --domain=packops.local
@@ -31,7 +28,6 @@ services:
       - --no-host-dns
       - --unattended
     ports:
-
       - "80:80"
       - "443:443"
       - "389:389"
