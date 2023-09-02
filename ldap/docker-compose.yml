@@ -29,10 +29,10 @@ services:
       - -U
       - --domain=udistritalredescorporativas.local
       - --realm=udistritalredescorporativas.local
-      - --admin-password=pass
-      - --http-pin=pass
-      - --dirsrv-pin=pass
-      - --ds-password=pass
+      - --admin-password=freeipaserver
+      - --http-pin=freeipaserver
+      - --dirsrv-pin=freeipaserver
+      - --ds-password=freeipaserver
       - --no-dnssec-validation
       - --no-host-dns
       - --setup-dns
