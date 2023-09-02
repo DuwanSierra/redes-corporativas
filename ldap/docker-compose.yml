@@ -43,7 +43,6 @@ services:
       - SYS_TIME
       - NET_ADMIN
     volumes:
-      - /etc/localtime:/etc/localtime:ro
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - ./data:/data
       - ./logs:/var/logs
