@@ -3,7 +3,7 @@ services:
   freeipa:
     image: freeipa/freeipa-server:centos-7
     hostname: udistritalredescorporativas
-    domainname: udistritalredescorporativas.lan
+    domainname: udistritalredescorporativas.local
     container_name: freeipa-dev
     ports:
       - 80:80
@@ -22,13 +22,13 @@ services:
     tty: true
     stdin_open: true
     environment:
-      IPA_SERVER_HOSTNAME: freeipa.udistritalredescorporativas.lan
+      IPA_SERVER_HOSTNAME: freeipa.udistritalredescorporativas.local
       IPA_SERVER_IP: 10.0.2.11
       TZ: "America/Bogota"
     command:
       - -U
-      - --domain=udistritalredescorporativas.lan
-      - --realm=udistritalredescorporativas.lan
+      - --domain=udistritalredescorporativas.local
+      - --realm=udistritalredescorporativas.local
       - --admin-password=freeipaserver
       - --http-pin=freeipaserver
       - --dirsrv-pin=freeipaserver
