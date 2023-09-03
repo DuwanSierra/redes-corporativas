@@ -2,7 +2,7 @@ version: "3.8"
 services:  
   freeipa:
     image: freeipa/freeipa-server:centos-7
-    hostname: udistritalredescorporativas
+    hostname: freeipa
     domainname: udistritalredescorporativas.lan
     container_name: freeipa-dev
     ports:
