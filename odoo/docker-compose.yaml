@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  odoo:
+    image: odoo:16.0
+    depends_on:
+      - db
+      - openldap
+    ports:
+      - "80:8069"
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
