@@ -4,7 +4,6 @@ services:
     image: odoo:16.0
     depends_on:
       - db
-      - openldap
     ports:
       - "80:8069"
   db:
