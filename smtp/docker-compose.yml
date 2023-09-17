@@ -26,6 +26,18 @@ services:
       - ENABLE_CLAMAV=0
       - ENABLE_SPAMASSASSIN=0
       - SPOOF_PROTECTION=0
+      - ACCOUNT_PROVISIONER=LDAP
+      # ldap
+      - LDAP_SERVER_HOST=freeipa.udistritalredescorporativas.lan
+      - LDAP_BIND_DN=uid=admin,cn=users,cn=compat,dc=udistritalredescorporativas,dc=lan
+      - LDAP_BIND_PW=freeipaserver
+      - LDAP_SEARCH_BASE=dc=udistritalredescorporativas,dc=lan
+      - LDAP_QUERY_FILTER_DOMAIN=(|(mail=*@%s)(mailAlias=*@%s)(mailGroupMember=*@%s))
+      - LDAP_QUERY_FILTER_USER=(&(objectClass=inetOrgPerson)(mail=%s))
+      - LDAP_QUERY_FILTER_ALIAS=(&(objectClass=inetOrgPerson)(mailAlias=%s))
+      - LDAP_QUERY_FILTER_GROUP=(&(objectClass=inetOrgPerson)(mailGroupMember=%s))
+      - LDAP_QUERY_FILTER_SENDERS=(&(objectClass=inetOrgPerson)(|(mail=%s)(mailAlias=%s)(mailGroupMember=%s)))
+      - SPOOF_PROTECTION=1
     cap_add:
       - NET_ADMIN # For Fail2Ban to work
       - SYS_PTRACE
