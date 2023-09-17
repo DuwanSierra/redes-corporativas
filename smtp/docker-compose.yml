@@ -10,11 +10,11 @@ services:
       - "587:587"
       - "465:465"
     volumes:
+      - './storage/mail-server/certs/:/tmp/docker-mailserver/ssl/'
       - './storage/mail-server/dms/mail-data/:/var/mail/'
       - './storage/mail-server/dms/mail-state/:/var/mail-state/'
       - './storage/mail-server/dms/mail-logs/:/var/log/mail/'
       - './storage/mail-server/dms/config/:/tmp/docker-mailserver/'
-      - './storage/mail-server/certs/:/tmp/docker-mailserver/ssl/'
     environment:
       - ENABLE_FAIL2BAN=1
       - SSL_TYPE=self-signed
