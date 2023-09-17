@@ -10,14 +10,16 @@ services:
       - "587:587"
       - "465:465"
     volumes:
-      - './storage/mail-server/certs/:/tmp/docker-mailserver/ssl/'
+      - './storage/mail-server/certs/:/tmp/dms/custom-certs/'
       - './storage/mail-server/dms/mail-data/:/var/mail/'
       - './storage/mail-server/dms/mail-state/:/var/mail-state/'
       - './storage/mail-server/dms/mail-logs/:/var/log/mail/'
       - './storage/mail-server/dms/config/:/tmp/docker-mailserver/'
     environment:
       - ENABLE_FAIL2BAN=1
-      - SSL_TYPE=self-signed
+      - SSL_TYPE=manual
+      - SSL_CERT_PATH=/tmp/dms/custom-certs/public.crt
+      - SSL_KEY_PATH=/tmp/dms/custom-certs/private.key
       - PERMIT_DOCKER=network
       - ONE_DIR=1
       - ENABLE_POSTGREY=0
