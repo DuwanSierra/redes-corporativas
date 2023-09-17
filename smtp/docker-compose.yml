@@ -20,7 +20,6 @@ services:
       - SSL_TYPE=manual
       - SSL_CERT_PATH=/tmp/dms/custom-certs/public.crt
       - SSL_KEY_PATH=/tmp/dms/custom-certs/private.key
-      - PERMIT_DOCKER=network
       - ONE_DIR=1
       - ENABLE_POSTGREY=0
       - ENABLE_CLAMAV=0
@@ -38,6 +37,7 @@ services:
       - LDAP_QUERY_FILTER_GROUP=(&(objectClass=inetOrgPerson)(mailGroupMember=%s))
       - LDAP_QUERY_FILTER_SENDERS=(&(objectClass=inetOrgPerson)(|(mail=%s)(mailAlias=%s)(mailGroupMember=%s)))
       - SPOOF_PROTECTION=1
+      - PERMIT_DOCKER=host
     cap_add:
       - NET_ADMIN # For Fail2Ban to work
       - SYS_PTRACE
