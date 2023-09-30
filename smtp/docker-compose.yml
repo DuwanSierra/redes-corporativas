@@ -5,6 +5,7 @@ services:
     domainname: udistritalredescorporativas.lan
     container_name: mailserver
     hostname: mail
+    restart: always
     ports:
       - "25:25"
       - "587:587"
