@@ -35,8 +35,8 @@ services:
       - LDAP_SEARCH_BASE=cn=users,cn=accounts,dc=udistritalredescorporativas,dc=lan
       - PERMIT_DOCKER=host
       - LDAP_QUERY_FILTER_USER=(mail=%s)
-      - LDAP_QUERY_FILTER_GROUP=(mailGroupMember=%s)
-      - LDAP_QUERY_FILTER_ALIAS=(mailAlias=%s)
+      - LDAP_QUERY_FILTER_GROUP=(mail=%s)
+      - LDAP_QUERY_FILTER_ALIAS=(mail=%s)
       - LDAP_QUERY_FILTER_DOMAIN=(mail=*@%s)
       - LOG_LEVEL=debug
     cap_add:
