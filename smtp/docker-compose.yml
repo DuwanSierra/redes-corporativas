@@ -10,6 +10,7 @@ services:
       - "25:25"
       - "587:587"
       - "465:465"
+      - "993:993"
     volumes:
       - './storage/mail-server/certs/:/tmp/dms/custom-certs/'
       - './storage/mail-server/dms/mail-data/:/var/mail/'
@@ -26,8 +27,8 @@ services:
       - ENABLE_CLAMAV=0
       - ENABLE_SPAMASSASSIN=0
       - SPOOF_PROTECTION=0
-      - ACCOUNT_PROVISIONER=LDAP
       # ldap
+      - ACCOUNT_PROVISIONER=LDAP
       - LDAP_SERVER_HOST=freeipa.udistritalredescorporativas.lan
       - LDAP_BIND_DN=uid=admin,cn=users,cn=compat,dc=udistritalredescorporativas,dc=lan
       - LDAP_BIND_PW=freeipaserver
@@ -39,6 +40,20 @@ services:
       - LDAP_QUERY_FILTER_SENDERS=
       - SPOOF_PROTECTION=1
       - PERMIT_DOCKER=host
+      - LDAP_QUERY_FILTER_USER=(&(mail=%s)(mailEnabled=TRUE))
+      - LDAP_QUERY_FILTER_GROUP=(&(mailGroupMember=%s)(mailEnabled=TRUE))
+      - LDAP_QUERY_FILTER_ALIAS=(|(&(mailAlias=%s)(objectClass=PostfixBookMailForward))(&(mailAlias=%s)(objectClass=PostfixBookMailAccount)(mailEnabled=TRUE)))
+      - LDAP_QUERY_FILTER_DOMAIN=(|(&(mail=*@%s)(objectClass=PostfixBookMailAccount)(mailEnabled=TRUE))(&(mailGroupMember=*@%s)(objectClass=PostfixBookMailAccount)(mailEnabled=TRUE))(&(mailalias=*@%s)(objectClass=PostfixBookMailForward)))
+      - DOVECOT_PASS_FILTER=(&(objectClass=PostfixBookMailAccount)(uniqueIdentifier=%n))
+      - DOVECOT_USER_FILTER=(&(objectClass=PostfixBookMailAccount)(uniqueIdentifier=%n))
+      - ENABLE_SASLAUTHD=1
+      - SASLAUTHD_MECHANISMS=ldap
+      - SASLAUTHD_LDAP_SERVER=freeipa.udistritalredescorporativas.lan
+      - SASLAUTHD_LDAP_BIND_DN=admin,cn=users,cn=compat,dc=udistritalredescorporativas,dc=lan
+      - SASLAUTHD_LDAP_PASSWORD=freeipaserver
+      - SASLAUTHD_LDAP_SEARCH_BASE=cn=users,cn=accounts,dc=udistritalredescorporativas,dc=lan
+      - SASLAUTHD_LDAP_FILTER=(&(objectClass=PostfixBookMailAccount)(uniqueIdentifier=%U))
+      - POSTMASTER_ADDRESS=postmaster@localhost.localdomain
     cap_add:
       - NET_ADMIN # For Fail2Ban to work
       - SYS_PTRACE
