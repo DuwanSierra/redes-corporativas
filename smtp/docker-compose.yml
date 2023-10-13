@@ -1,5 +1,19 @@
 version: '3.8'
 services:
+  roundcubemail:
+      image: roundcube/roundcubemail:latest
+      container_name: roundcubemail
+      restart: always
+      volumes:
+        - ./storage/ui/www:/var/www/html
+        - ./storage/ui/db/sqlite:/var/roundcube/db
+      ports:
+        - 9002:80
+      environment:
+        - ROUNDCUBEMAIL_DB_TYPE=sqlite
+        - ROUNDCUBEMAIL_SKIN=elastic
+        - ROUNDCUBEMAIL_DEFAULT_HOST=imap://mailserver
+        - ROUNDCUBEMAIL_SMTP_SERVER=smtp://mailserver
   mailserver:
     image: docker.io/mailserver/docker-mailserver:latest
     domainname: udistritalredescorporativas.lan
