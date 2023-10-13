@@ -12,8 +12,8 @@ services:
       environment:
         - ROUNDCUBEMAIL_DB_TYPE=sqlite
         - ROUNDCUBEMAIL_SKIN=elastic
-        - ROUNDCUBEMAIL_DEFAULT_HOST=imap://mailserver
-        - ROUNDCUBEMAIL_SMTP_SERVER=smtp://mailserver
+        - ROUNDCUBEMAIL_DEFAULT_HOST=imap://mail.udistritalredescorporativas.lan
+        - ROUNDCUBEMAIL_SMTP_SERVER=smtp://mail.udistritalredescorporativas.lan
   mailserver:
     image: docker.io/mailserver/docker-mailserver:latest
     domainname: udistritalredescorporativas.lan
